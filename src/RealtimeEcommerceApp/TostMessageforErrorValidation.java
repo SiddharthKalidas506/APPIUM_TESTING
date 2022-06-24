@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.springframework.util.Assert;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -23,5 +24,6 @@ public static void main(String[] args) throws MalformedURLException {
 	driver.findElement(By.className("android.widget.Button")).click();
 	String q=driver.findElement(By.xpath("//android.widget.Toast[1]")).getAttribute("name");
 	System.out.println(q);
+	
 }
 }
