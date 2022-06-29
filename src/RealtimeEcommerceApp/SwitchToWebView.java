@@ -1,20 +1,24 @@
 package RealtimeEcommerceApp;
 
+import static io.appium.java_client.touch.LongPressOptions.longPressOptions;
+import static io.appium.java_client.touch.offset.ElementOption.element;
+import static java.time.Duration.ofSeconds;
+
 import java.net.MalformedURLException;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import static io.appium.java_client.touch.TapOptions.tapOptions;
-import static io.appium.java_client.touch.offset.ElementOption.element;
-import static io.appium.java_client.touch.LongPressOptions.longPressOptions;
-import static java.time.Duration.ofSeconds;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 
-public class E2EPriceValidationTC extends ecommerceappBase {
+public class SwitchToWebView extends ecommerceappBase{
+
 	
 	public static void main(String[] args) throws MalformedURLException, InterruptedException {
 		// TODO Auto-generated method stub
@@ -72,11 +76,21 @@ public class E2EPriceValidationTC extends ecommerceappBase {
         at.longPress(longPressOptions().withElement(element(i)).withDuration(ofSeconds(5))).release().perform();
         driver.findElement(By.xpath("//*[@text='CLOSE']")).click();
         driver.findElement(By.xpath("//*[@text='Visit to the website to complete purchase']")).click();
+        Thread.sleep(90);
+        Set<String> st=driver.getContextHandles();
+         for(String contex:st) {
+        	 System.out.println(contex);
+         }
          
-        
          
-        
-        
-        
-}
+//        Switching happening 
+        Thread.sleep(100);
+//         driver.context("WEBVIEW_com.androidsample.generalstore");
+         driver.findElement(By.className("android.widget.EditText")).click();
+         driver.findElement(By.className("android.widget.EditText")).sendKeys("pogo");
+         driver.pressKey(new KeyEvent(AndroidKey.BACK));
+         driver.pressKey(new KeyEvent(AndroidKey.BACK));
+	}
+	
+	
 }
